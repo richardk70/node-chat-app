@@ -23,19 +23,18 @@ io.on('connection', (socket) => {
         console.log('User disconnected.');
     });
 
-    socket.emit('newMessage', {
-        from: 'messenger@home.com',
-        text: 'this is the text messsage',
-        createdAt: new Date()
-    });
-
-    socket.on('createMessage', (newMessage) => {
+    socket.on('createMessage', (message) => {
         var hours = new Date().getHours()%12;
         var minutes = new Date().getMinutes();
         var secs = new Date().getSeconds();
-        var createdAt = `${hours}:${minutes}:${secs}`;
-        console.log(newMessage);
+        var createdAt = `${isTwoDigits(hours)}:${isTwoDigits(minutes)}:${isTwoDigits(secs)}`;
+        console.log(message);
         console.log('created at: ', createdAt);
+        io.emit('newMessage', {
+            from: message.from,
+            text: message.text,
+            createdAt: createdAt
+        })
     });
 
 });
@@ -43,3 +42,10 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
     console.log(`Listening on port ${port}...`);
 });
+
+function isTwoDigits(num) {
+    if (num < 10)
+        return '0' + num.toString();
+    else
+        return num;
+}
