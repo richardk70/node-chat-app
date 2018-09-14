@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>socket.IO Project</title>
+    <link rel='stylesheet' href='index.css' type='text/css'>
 </head>
 <body>
     <p>This is your socket.io project, a chat app.</p>
-    <div id='from'></div>
-    <div id='text'></div>
-    <div id='date'></div>
+    <form id='msg-form'>
+        <input name='from' id='from' type='text' placeholder="from"></input><br>
+        <textarea name='text' id='text' type='text' placeholder="message"></textarea><br>
+        <input type='submit' id='submitBtn' value='Send'></input>
+    </form>
+    <p></p>
+    <div id='incoming'>
+    <ol id='incoming-list'></ol>
+    </div>
 
     <script src='/socket.io/socket.io.js'></script>
     <script src='index.js' type='text/javascript'>

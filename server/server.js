@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
     
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
     
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message, callback) => {
         // var hours = new Date().getHours()%12;
         // var minutes = new Date().getMinutes();
         // var secs = new Date().getSeconds();
@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
         console.log(message);
         console.log('created at: ', createdAt);
         io.emit('newMessage', generateMessage(message.from, message.text));
-        
+        callback('this is the callback call');
         // socket.broadcast sends to every but ones own socket
         // socket.broadcast.emit('newMessage', {
             //     from: message.from,
