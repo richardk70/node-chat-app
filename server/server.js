@@ -1,17 +1,13 @@
-// routes
-// app.listen
 const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
 const {generateMessage} = require('./utils/message');
+const {generateLocationMessage} = require('./utils/message');
 const publicPath = path.join(__dirname, '../public/');
-
 const port = process.env.PORT || 3000; 
-
 const app = express();
-
 var server = http.createServer(app);
 var io = socketIO(server);
 
@@ -23,28 +19,22 @@ io.on('connection', (socket) => {
     // socket.emit from admin 'welcome to the chat app'
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the Chat app'));
     // socket.broadcast.emit 'new user joined'
-    var hours = new Date().getHours()%12;
-    var minutes = new Date().getMinutes();
-    var secs = new Date().getSeconds();
-    var createdAt = `${isTwoDigits(hours)}:${isTwoDigits(minutes)}:${isTwoDigits(secs)}`;
     
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
     
     socket.on('createMessage', (message, callback) => {
-        // var hours = new Date().getHours()%12;
-        // var minutes = new Date().getMinutes();
-        // var secs = new Date().getSeconds();
+        var hours = new Date().getHours()%12;
+        var minutes = new Date().getMinutes();
+        var secs = new Date().getSeconds();
         var createdAt = `${isTwoDigits(hours)}:${isTwoDigits(minutes)}:${isTwoDigits(secs)}`;
-        console.log(message);
+        console.log('createMessage: ', message);
         console.log('created at: ', createdAt);
         io.emit('newMessage', generateMessage(message.from, message.text));
-        callback('this is the callback call');
-        // socket.broadcast sends to every but ones own socket
-        // socket.broadcast.emit('newMessage', {
-            //     from: message.from,
-            //     text: message.text,
-            //     createdAt: createdAt
-            // });
+        callback('this is the callback call from the server');
+        });
+
+        socket.on('createLocationMessage', (coords) => {
+            io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
         });
 
         socket.on('disconnect', (socket) => {

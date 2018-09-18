@@ -29,6 +29,22 @@ input, textarea{
     background: green;
 }
 
+button{
+    width: 120px;
+    height: 30px;
+    color: #ddd;
+    font-size: 1rem;
+    background: linear-gradient(lightgreen, darkgreen);
+    border: 0;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+button:hover{
+    color: white;
+    background: green;
+}
+
 #incoming {
     background: lightgrey;
     border-radius: 10px;
