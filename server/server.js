@@ -23,13 +23,15 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
     
     socket.on('createMessage', (message, callback) => {
-        var hours = new Date().getHours()%12;
-        var minutes = new Date().getMinutes();
-        var secs = new Date().getSeconds();
-        var createdAt = `${isTwoDigits(hours)}:${isTwoDigits(minutes)}:${isTwoDigits(secs)}`;
-        console.log('createMessage: ', message);
-        console.log('created at: ', createdAt);
-        io.emit('newMessage', generateMessage(message.from, message.text));
+        // var hours = new Date().getHours();
+        // if (hours > 12)
+        //     hours = hours - 12;
+        // var minutes = new Date().getMinutes();
+        // var secs = new Date().getSeconds();
+        // var createdAt = `${isTwoDigits(hours)}:${isTwoDigits(minutes)}:${isTwoDigits(secs)}`;
+        console.log('createMessage: ', message.text);
+        console.log('created at: ', message.createdAt);
+        io.emit('newMessage', generateMessage(message.from, message.text, message.createdAt));
         callback('this is the callback call from the server');
         });
 
