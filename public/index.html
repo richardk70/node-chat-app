@@ -8,16 +8,31 @@
     <link rel='stylesheet' href='index.css' type='text/css'>
 </head>
 <body>
-    <p>This is your socket.io project, a chat app.</p>
-    <form id='msg-form'>
-        <input name='from' id='from' type='text' placeholder="from"></input><br>
-        <textarea name='text' id='text' type='text' placeholder="message"></textarea><br>
-        <input type='submit' id='submitBtn' value='Send'></input>
-    </form>
-    <button>Send Location</button>
-    <p></p>
-    <div id='incoming'>
-    <ol id='incoming-list'></ol>
+    <div class='container'>
+        
+        <div class='box left'>
+            <p>People</p>
+        </div>
+        
+        <div class='box right'>
+            <div id='incoming'>
+                <ul id='incoming-list'></ul>
+            </div>
+
+            <div id='outgoing'>
+                <div class='msg-left'>
+                    <form>
+                        <!-- <input name='from' id='from' type='text' placeholder="from"></input><br> -->
+                        <input type='text' id='text' placeholder="message here" autofocus autocomplete="off"></input>
+                        <input type='submit' id='submitBtn' value='Send' class='btn'></input>
+                    </form>
+                </div>
+                <div class='msg-right'>
+                    <button class='btn'>Send Location</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script src='/socket.io/socket.io.js'></script>

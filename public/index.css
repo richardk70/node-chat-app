@@ -1,60 +1,98 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
-input, textarea{
-    padding: 2px;
-    margin: 2px;
+.container{
+    display: flex;
+    grid-template-columns: 100px 200px;
+    grid-gap: 10px;
+    padding: 0;
+    margin: 0;
 }
 
-#text{
-    width: 40%;
-    height: 40px;
-    font-family: Arial, Helvetica, sans-serif;
+.box{
+    padding: 0;
+    margin: 0;
 }
 
-#submitBtn {
-    width: 100px;
-    height: 30px;
-    color: #ddd;
-    font-size: 1.2rem;
-    background: linear-gradient(lightgreen, darkgreen);
-    border: 0;
-    border-radius: 6px;
-
+.left{
+    flex: 1;
+    background: linear-gradient(#2b547e, #566d7e);
+    color: #eee;
+    min-width: 200px;
+    height: 100vh;
 }
 
-#submitBtn:hover{
-    color: white;
-    background: green;
+.left p{
+    font-weight: 600;
+    padding: 10px 20px;
+}
+.right{
+    flex: 3;
+    color: black;
+    display: flex;
+    flex-direction: column;
 }
 
-button{
-    width: 120px;
-    height: 30px;
-    color: #ddd;
-    font-size: 1rem;
-    background: linear-gradient(lightgreen, darkgreen);
-    border: 0;
-    border-radius: 6px;
+#incoming{
+    flex: 4;
+    background: white;
+    padding: 10px;
+}
+
+#incoming-list{
+    list-style: none;
+}
+
+#outgoing{
+    flex: 0 1 auto;
+    background: #ddd;
+    padding: 6px;
+    display: flex;
+}
+
+.msg-left{
+    flex: 2;
+    flex-wrap: nowrap;
+}
+
+input{
     display: inline-block;
 }
 
-button:hover{
-    color: white;
-    background: green;
+input[type='text']{
+    width: 80%;
+    min-width: 200px;
+    height: 22px;
+    padding: 4px;
+    border: 0;
 }
 
-#incoming {
-    background: lightgrey;
-    border-radius: 10px;
-    padding: 10px;
-    width: 50%;
-    height: auto;
+.msg-right{
+    flex: 0 1 auto;
+}
+
+.btn{
+    color: #ddd;
+    font-size: .8rem;
+    background-color: #2b547e;
+    transition: background-color 0.2s;
+    border: 0;
+    padding: 4px;
+    max-width: 120px;
+    height: 30px;
+    text-align: center;
+}
+
+.btn:hover{
+    color: white;
+    background-color: #566d7e;
 }
 
 .timestamp {
-    color: grey;
+    color: #333;
     font-size: 10px;
     font-style: italic;
 }
