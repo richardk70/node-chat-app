@@ -4,76 +4,6 @@ body {
     margin: 0;
 }
 
-.container{
-    display: flex;
-    grid-template-columns: 100px 200px;
-    grid-gap: 10px;
-    padding: 0;
-    margin: 0;
-}
-
-.box{
-    padding: 0;
-    margin: 0;
-}
-
-.left{
-    flex: 1;
-    background: linear-gradient(#2b547e, #566d7e);
-    color: #eee;
-    min-width: 200px;
-    height: 100vh;
-}
-
-.left p{
-    font-weight: 600;
-    padding: 10px 20px;
-}
-.right{
-    flex: 3;
-    color: black;
-    display: flex;
-    flex-direction: column;
-}
-
-#incoming{
-    flex: 4;
-    background: white;
-    padding: 10px;
-}
-
-#incoming-list{
-    list-style: none;
-}
-
-#outgoing{
-    flex: 0 1 auto;
-    background: #ddd;
-    padding: 6px;
-    display: flex;
-}
-
-.msg-left{
-    flex: 2;
-    flex-wrap: nowrap;
-}
-
-input{
-    display: inline-block;
-}
-
-input[type='text']{
-    width: 80%;
-    min-width: 200px;
-    height: 22px;
-    padding: 4px;
-    border: 0;
-}
-
-.msg-right{
-    flex: 0 1 auto;
-}
-
 .btn{
     color: #ddd;
     font-size: .8rem;
@@ -91,16 +21,128 @@ input[type='text']{
     background-color: #566d7e;
 }
 
+.modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    background: #ddd;
+    border-radius: 6px;
+    border: none;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.modal h2{
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form > * {
+    flex: 1;
+    border: 0;
+}
+
+form > input {
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+
+form > .btm-row {
+    display: flex;
+    justify-content: center;
+}
+
+#submit-btn {
+    margin-top: 20px;
+    min-width: 100%;
+}
+
+.container{
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.box{
+    padding: 0;
+    margin: 0;
+}
+
+.left{
+    flex: 1;
+    background: linear-gradient(#2b547e, #566d7e);
+    color: #eee;
+    min-width: 120px;
+    height: 100vh;
+}
+
+.left p{
+    font-weight: 600;
+    padding: 10px 20px;
+}
+.right{
+    flex: 3;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+#incoming{
+    flex: 4;
+    background: white;
+    padding: 10px 0;
+
+}
+
+#incoming-list{
+    list-style: none;
+}
+
+#outgoing{
+    flex: 0 1 auto;
+    justify-content: end;
+    background: #ddd;
+    padding: 6px;
+    display: flex;
+}
+
+.msg-left{
+    flex: 3;
+    flex-wrap: nowrap;
+}
+
+#outgoing > input{
+    display: inline-block;
+}
+
+#outgoing > input[type='text']{
+    width: 80%;
+    min-width: 200px;
+    height: 22px;
+    padding: 4px;
+    border: 0;
+}
+
+.msg-right{
+    flex: 0 1 auto;
+}
+
 li {
     padding-bottom: 10px;
 }
 
 .message_title{
-    line-height: 4px;
+    line-height: 0px;
 }
 
 .message_body{
-    line-height: 4px;
+    line-height: 0px;
 }
 
 .from{

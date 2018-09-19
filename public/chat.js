@@ -1,5 +1,16 @@
 var socket = io(); // opens up a connection
 
+function scrollToBottom() {
+    var messagePane = document.getElementById('incoming');
+    var incomingList = document.getElementById('incoming-list');
+    // var boxLeft = document.getElementsByClassName('left')[0];
+    // boxLeft.style.height = 100 + 'vh';
+
+    
+}
+
+
+
 socket.on('connect', function() {
     console.log('Connected to server from browser.');
 });
@@ -19,6 +30,7 @@ socket.on('newMessage', function(messageData) {
         createdAt: formattedTime
     });
     incoming.innerHTML += html;
+    scrollToBottom();
 });
 
 socket.on('newLocationMessage', function(messageData) {
@@ -30,6 +42,7 @@ socket.on('newLocationMessage', function(messageData) {
         createdAt: formattedTime
     });
     incoming.innerHTML += html;
+    scrollToBottom();
 });
 
 var submitBtn = document.getElementById('submitBtn');
