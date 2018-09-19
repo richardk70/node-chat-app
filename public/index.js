@@ -11,44 +11,25 @@ socket.on('disconnect', function() {
 var incoming = document.getElementById('incoming-list');
 // new message listener
 socket.on('newMessage', function(messageData) {
-    // messageData.createdAt = new Date();
-    // var hours = messageData.createdAt.getHours();
-    // if (hours > 12)
-    // hours = hours - 12;
-    // var minutes = messageData.createdAt.getMinutes();
-    // var secs = messageData.createdAt.getSeconds();
-    // var createdAt = `${isTwoDigits(hours)}:${isTwoDigits(minutes)}:${isTwoDigits(secs)}`;
-
-    var formattedTime = moment(messageData.createdAt).format('h:mm a');
-
-    var br = document.createElement('br');
-    var dv = document.createElement('div');
-    dv.className = 'timestamp';
-    
-    var li = document.createElement('li');
-    var textNodeMsg = document.createTextNode(messageData.from + ': ' + messageData.text);
-    var textNodeDate = document.createTextNode(formattedTime);
-    
-    li.appendChild(textNodeMsg);
-    li.appendChild(br);
-    dv.appendChild(textNodeDate);
-    li.appendChild(dv);
-    
-    incoming.appendChild(li);
+    var formattedTime = dayjs(messageData.createdAt).format('h:mma');
+    var messageTemplate = document.getElementById('message-template').innerHTML;
+    var html = Mustache.render(messageTemplate, {
+        text: messageData.text,
+        from: messageData.from,
+        createdAt: formattedTime
+    });
+    incoming.innerHTML += html;
 });
 
 socket.on('newLocationMessage', function(messageData) {
-    var formattedTime = moment(messageData.createdAt).format('h:mm a');
-    var br = document.createElement('br');
-    var dv = document.createElement('div');
-    dv.className = 'timestamp';
-
-    var li = document.createElement('li');
-    var textNodeDate = document.createTextNode(formattedTime);
-    li.innerHTML = `<a href=${messageData.url} target="_blank">my current location</a><br>`;
-    dv.appendChild(textNodeDate);
-    li.appendChild(dv);
-    incoming.appendChild(li);
+    var formattedTime = dayjs(messageData.createdAt).format('h:mma');
+    var locationTemplate = document.getElementById('location-template').innerHTML;
+    var html = Mustache.render(locationTemplate, {
+        url: messageData.url,
+        from: messageData.from,
+        createdAt: formattedTime
+    });
+    incoming.innerHTML += html;
 });
 
 var submitBtn = document.getElementById('submitBtn');
