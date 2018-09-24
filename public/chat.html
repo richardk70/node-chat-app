@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>socket.IO Project</title>
-    <link rel='stylesheet' href='index.css' type='text/css'>
+    <link rel='stylesheet' href='chat.css' type='text/css'>
 </head>
 <body>
     <div class='container'>
         
         <div class='box left'>
             <p>People</p>
+            <div id='people-list'></div>
         </div>
         
         <div class='box right'>
@@ -34,7 +35,7 @@
             
         </div>
     </div>
-
+    
     <!-- for mustache templating -->
     <script id='message-template' type='text/template'>
         <li>

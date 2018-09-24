@@ -1,22 +1,45 @@
+// const url = require('url');
+
 var socket = io(); // opens up a connection
 
 function scrollToBottom() {
     var messagePane = document.getElementById('incoming');
     var incomingList = document.getElementById('incoming-list');
     // var boxLeft = document.getElementsByClassName('left')[0];
-    // boxLeft.style.height = 100 + 'vh';
-
-    
+    // boxLeft.style.height = 100 + 'vh';   
 }
 
-
+var queryString = {};
+window.location.href.replace(
+    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+    function($0, $1, $2, $3) { queryString[$1] = $3; }
+);
 
 socket.on('connect', function() {
-    console.log('Connected to server from browser.');
+    socket.emit('join', queryString, function(err) {
+        if (err) {
+            alert(err);
+            window.location.href = '/';
+        } else 
+            console.log('no error');
+    });
 });
 
 socket.on('disconnect', function() {
     console.log('Disconnected from server from browser.');
+});
+
+var peopleInRoom = document.getElementById('people-list');
+socket.on('updateUserList', function(usersArray) {
+    console.log('people in room: ', usersArray);
+    peopleInRoom.innerHTML = "";
+    usersArray.forEach(function(user){
+        var userDiv = document.createElement('DIV');
+        userDiv.classList.add('person_in_room');
+        var textNode = document.createTextNode(user);
+        userDiv.appendChild(textNode);
+        peopleInRoom.appendChild(userDiv);
+    });
 });
 
 var incoming = document.getElementById('incoming-list');
