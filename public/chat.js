@@ -76,7 +76,6 @@ submitBtn.addEventListener('click', (e) => {
     text.value = "";
 
     socket.emit('createMessage', {
-        from: 'user',
         text: inputText
     }, function(data) {
         console.log(data);

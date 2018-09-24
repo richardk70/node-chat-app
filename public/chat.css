@@ -96,8 +96,13 @@ li {
 }
 
 .person_in_room{
-    color: white;
-    padding-left: 20px;
+    color: black;
+    background: #ddd;
+    height: 20px;
+    border-radius: 6px;
+    margin: 2px;
+    margin-left: 20px;
+    padding: 2px 4px;
 }
 
 .message_title{
